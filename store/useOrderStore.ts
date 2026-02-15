@@ -19,8 +19,16 @@ export const useOrderStore = create<OrderState>((set, get) => ({
     set({ orders: data, isLoading: false });
   },
   addOrder: async (order) => {
-    const newOrder = await OrderRepository.createOrder(order);
-    set({ orders: [newOrder, ...get().orders] });
+    // const newOrder = await OrderRepository.createOrder(order);
+    // set({ orders: [newOrder, ...get().orders] });
+
+     const newOrder = await OrderRepository.createOrder(order);
+
+  console.log("Before set:", get().orders);
+
+  set({ orders: [newOrder, ...get().orders] });
+
+  console.log("After set:", get().orders);
   },
   syncOrders: async () => {
     set({ isLoading: true });

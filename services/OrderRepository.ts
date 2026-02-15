@@ -17,7 +17,7 @@ export const OrderRepository = {
   createOrder: async (order: Omit<Order, 'id' | 'createdAt' | 'isSynced'>): Promise<Order> => {
     const newOrder: Order = {
       ...order,
-      id: uuidv4(),
+      id: Date.now().toString(),
       createdAt: new Date().toISOString(),
       isSynced: false,
     };
